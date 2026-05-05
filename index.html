@@ -201,43 +201,43 @@
 
       <div id="voting-form" style="width:100%">
         <div class="suspects-grid">
-          <div class="suspect-card" data-suspect="scarlett" onclick="selectSuspect(this)">
-            <div class="suspect-icon">🔴</div>
-            <div class="suspect-info">
-              <span class="suspect-name">Miss Scarlett</span>
-              <span class="suspect-alias">Katie Smith Sloan · LeadingAge CEO</span>
-            </div>
-            <div class="suspect-check">✓</div>
-          </div>
-          <div class="suspect-card" data-suspect="mustard" onclick="selectSuspect(this)">
+          <div class="suspect-card" data-suspect="arthur" onclick="selectSuspect(this)">
             <div class="suspect-icon">🟡</div>
             <div class="suspect-info">
-              <span class="suspect-name">Colonel Mustard</span>
-              <span class="suspect-alias">Chris Bird · LCS President & CEO</span>
+              <span class="suspect-name">Arthur</span>
+              <span class="suspect-alias">Joel Nelson · President & CEO, LCS</span>
             </div>
             <div class="suspect-check">✓</div>
           </div>
-          <div class="suspect-card" data-suspect="white" onclick="selectSuspect(this)">
-            <div class="suspect-icon">⚪</div>
+          <div class="suspect-card" data-suspect="eleanor" onclick="selectSuspect(this)">
+            <div class="suspect-icon">🟣</div>
             <div class="suspect-info">
-              <span class="suspect-name">Mrs. White</span>
-              <span class="suspect-alias">Katie Schmitz · Ziegler Link•Age Funds</span>
+              <span class="suspect-name">Eleanor</span>
+              <span class="suspect-alias">Katie Smith Sloan · CEO, LeadingAge</span>
             </div>
             <div class="suspect-check">✓</div>
           </div>
-          <div class="suspect-card" data-suspect="green" onclick="selectSuspect(this)">
-            <div class="suspect-icon">🟢</div>
-            <div class="suspect-info">
-              <span class="suspect-name">Reverend Green</span>
-              <span class="suspect-alias">John Hayes · Resident Representative</span>
-            </div>
-            <div class="suspect-check">✓</div>
-          </div>
-          <div class="suspect-card" data-suspect="peacock" onclick="selectSuspect(this)">
+          <div class="suspect-card" data-suspect="barnaby" onclick="selectSuspect(this)">
             <div class="suspect-icon">🔵</div>
             <div class="suspect-info">
-              <span class="suspect-name">Mrs. Peacock</span>
-              <span class="suspect-alias">Frank Vedder · LCS CIO</span>
+              <span class="suspect-name">Barnaby</span>
+              <span class="suspect-alias">John Hayes · Resident, Sandhill Cove</span>
+            </div>
+            <div class="suspect-check">✓</div>
+          </div>
+          <div class="suspect-card" data-suspect="victor" onclick="selectSuspect(this)">
+            <div class="suspect-icon">🔴</div>
+            <div class="suspect-info">
+              <span class="suspect-name">Victor</span>
+              <span class="suspect-alias">Frank Vedder · CIO, LCS</span>
+            </div>
+            <div class="suspect-check">✓</div>
+          </div>
+          <div class="suspect-card" data-suspect="martha" onclick="selectSuspect(this)">
+            <div class="suspect-icon">🟢</div>
+            <div class="suspect-info">
+              <span class="suspect-name">Martha</span>
+              <span class="suspect-alias">Katie Schmitz · Ziegler Link-Age</span>
             </div>
             <div class="suspect-check">✓</div>
           </div>
@@ -277,17 +277,17 @@
 <script>
 const STORAGE_KEY = 'rd_innotank_votes_2026';
 const SUSPECTS = [
-  { id:'scarlett', name:'Miss Scarlett',   alias:'Katie Smith Sloan', icon:'🔴', barClass:'scarlett-bar' },
-  { id:'mustard',  name:'Colonel Mustard', alias:'Chris Bird',        icon:'🟡', barClass:'mustard-bar'  },
-  { id:'white',    name:'Mrs. White',      alias:'Katie Schmitz',     icon:'⚪', barClass:'white-bar'    },
-  { id:'green',    name:'Reverend Green',  alias:'John Hayes',        icon:'🟢', barClass:'green-bar'    },
-  { id:'peacock',  name:'Mrs. Peacock',    alias:'Frank Vedder',      icon:'🔵', barClass:'peacock-bar'  },
+  { id:'arthur',  name:'Arthur',  alias:'Joel Nelson · President & CEO, LCS',  icon:'🟡', barClass:'mustard-bar'  },
+  { id:'eleanor', name:'Eleanor', alias:'Katie Smith Sloan · CEO, LeadingAge', icon:'🟣', barClass:'scarlett-bar' },
+  { id:'barnaby', name:'Barnaby', alias:'John Hayes · Resident, Sandhill Cove',icon:'🔵', barClass:'peacock-bar'  },
+  { id:'victor',  name:'Victor',  alias:'Frank Vedder · CIO, LCS',             icon:'🔴', barClass:'green-bar'    },
+  { id:'martha',  name:'Martha',  alias:'Katie Schmitz · Ziegler Link-Age',    icon:'🟢', barClass:'white-bar'    },
 ];
 let selectedSuspect = null, hasVoted = false, resultsInterval = null;
 
 function getVotes() {
-  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : {scarlett:0,mustard:0,white:0,green:0,peacock:0}; }
-  catch(e) { return {scarlett:0,mustard:0,white:0,green:0,peacock:0}; }
+  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : {arthur:0,eleanor:0,barnaby:0,victor:0,martha:0}; }
+  catch(e) { return {arthur:0,eleanor:0,barnaby:0,victor:0,martha:0}; }
 }
 function saveVote(id) {
   const v = getVotes(); v[id] = (v[id]||0)+1;
@@ -295,7 +295,7 @@ function saveVote(id) {
   window.dispatchEvent(new StorageEvent('storage',{key:STORAGE_KEY,newValue:JSON.stringify(v)}));
 }
 function resetVotes() {
-  const f={scarlett:0,mustard:0,white:0,green:0,peacock:0};
+  const f={arthur:0,eleanor:0,barnaby:0,victor:0,martha:0};
   localStorage.setItem(STORAGE_KEY,JSON.stringify(f)); return f;
 }
 function selectSuspect(card) {
